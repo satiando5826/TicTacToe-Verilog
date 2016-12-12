@@ -1,10 +1,15 @@
-module LED_Display(l, b, x, reset);
+module LED_Display(l, clk, b, x, gend, reset);
 	output [2:1]l;
+	output clk;
 	//input from xor and button
-	input b, reset;
+	input b, gend, reset;
 	input [2:1]x;
-	wire clk;
-	D_FF d1(clk, 1'b0, b, reset);
+	wire w;
+	//ignore any input if game is end
+	//gend = not win
+	and a1(w, b, gend);
+	
+	D_FF d1(clk, 1'b0, w, reset);
 	D_FF p1(l[1], x[1], clk, reset);
 	D_FF p2(l[2], x[2], clk, reset);
 endmodule
