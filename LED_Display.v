@@ -9,7 +9,7 @@ module LED_Display(l, clk, b, x, gend, reset);
 	//gend = not win
 	and a1(w, b, gend);
 	
-	D_FF d1(clk, 1'b0, w, reset);
+	D_FF d1(clk, 1'b1, w, reset);
 	D_FF p1(l[1], x[1], clk, reset);
 	D_FF p2(l[2], x[2], clk, reset);
 endmodule
